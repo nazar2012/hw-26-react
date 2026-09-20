@@ -18,6 +18,7 @@ function MovieDetails() {
     console.log(location);
 
     const imageUrl = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+    
     const deafultImg = "https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg"
 
     return (
