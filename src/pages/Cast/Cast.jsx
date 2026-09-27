@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { getMovieCast } from "../../api"
 import { useParams } from "react-router"
+import css from "./Cast.module.css"
 
 function Cast() {
     const [cast, setCast] = useState([])
@@ -13,26 +14,39 @@ function Cast() {
         fetchCast()
     }, [movieId])
 
-    // const imageUrl = `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
     const deafultImg = "https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small_2x/no-image-available-icon-vector.jpg"
 
     return (
-        <>
-            <h1>Cast</h1>
-            <ul>
+        <div className={css.container}>
+            <h1 className={css.title}>Cast</h1>
+
+            <ul className={css.list}>
                 {cast.map((actor) => {
                     return (
-                        <li key={actor.id}>
+                        <li className={css.item} key={actor.id}>
                             {actor.profile_path ? (
-                                <img src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`} alt={actor.name} />
-                            ) : <img src={deafultImg} alt={actor.name} />}
-                            <h2>{actor.name}</h2>
-                            <p>Character: {actor.character}</p>
+                                <img
+                                    className={css.image}
+                                    src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`}
+                                    alt={actor.name}
+                                />
+                            ) : (
+                                <img
+                                    className={css.image}
+                                    src={deafultImg}
+                                    alt={actor.name}
+                                />
+                            )}
+
+                            <h2 className={css.name}>{actor.name}</h2>
+                            <p className={css.character}>
+                                Character: {actor.character}
+                            </p>
                         </li>
                     )
                 })}
             </ul>
-        </>
+        </div>
     )
 }
 

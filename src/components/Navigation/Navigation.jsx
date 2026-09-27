@@ -1,12 +1,23 @@
 import { NavLink } from "react-router-dom"
-import { Nav } from "./Navigation.styled"
+import css from "./Navigation.module.css"
 
 function Navigation() {
     return (
-        <Nav>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/movies">Movies</NavLink>
-        </Nav>
+        <nav className={css.nav}>
+            <NavLink
+                className={({ isActive }) => isActive ? css.active : css.link}
+                to="/"
+            >
+                Home
+            </NavLink>
+
+            <NavLink
+                className={({ isActive }) => isActive ? css.active : css.link}
+                to="/movies"
+            >
+                Movies
+            </NavLink>
+        </nav>
     )
 }
 

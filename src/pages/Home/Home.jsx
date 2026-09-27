@@ -1,22 +1,26 @@
 import { getTrendingMovies } from "../../api"
 import { useEffect, useState } from "react"
 import MovieList from "../../components/MovieList/MovieList"
+import css from "./Home.module.css"
 
 function Home() {
     const [movie, setMovie] = useState([])
+
     useEffect(() => {
         async function fetchMovies() {
             const movies = await getTrendingMovies()
-            setMovie(movies);
+            setMovie(movies)
+            localStorage.removeItem("movie")
         }
+
         fetchMovies()
     }, [])
-    // console.log(movie);
+
     return (
-        <>
-            <h1>Trending today</h1>
+        <div className={css.container}>
+            <h1 className={css.title}>Trending today</h1>
             <MovieList movies={movie} />
-        </>
+        </div>
     )
 }
 
